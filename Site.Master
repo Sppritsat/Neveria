@@ -1,0 +1,250 @@
+﻿<%-- 
+    Archivo: Site.Master
+    Propósito: Página maestra que define la estructura común de todas las páginas
+    Autor: [Tu Nombre]
+    Fecha: [Fecha]
+    Descripción: Contiene el navbar, footer y estructura base que se repite en todo el sitio
+    Todas las páginas .aspx heredan de esta plantilla
+--%>
+
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Crud_WebForms.SiteMaster" %>
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <%-- Configuración de codificación de caracteres --%>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    
+    <%-- Viewport para diseño responsive (se adapta a móviles) --%>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <%-- Título dinámico: <%: Page.Title %> se llena desde cada página --%>
+    <title><%: Page.Title %> - Mi aplicación ASP.NET</title>
+    
+    <%-- Scripts de modernizr para compatibilidad cross-browser --%>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    
+    <%-- Bundle de CSS (incluye Bootstrap y estilos personalizados) --%>
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    
+    <%-- Favicon: ícono que aparece en la pestaña del navegador --%>
+    <link href="~/neveria.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+    <%-- Formulario principal: ASP.NET requiere un form runat="server" --%>
+    <form runat="server">
+        <%-- ScriptManager: necesario para AJAX y algunos controles ASP.NET --%>
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%-- Scripts del framework ASP.NET --%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+            </Scripts>
+        </asp:ScriptManager>
+        
+        <%-- ============================================
+             BARRA DE NAVEGACIÓN (NAVBAR)
+             ============================================ --%>
+        <%-- 
+            Clases de Bootstrap:
+            - navbar: componente de barra de navegación
+            - navbar-expand-sm: se expande en pantallas small+
+            - navbar-toggleable-sm: colapsable en móviles
+            - navbar-dark: tema oscuro (texto blanco)
+            - Gradiente rosa mexicano personalizado
+        --%>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark" style="background: linear-gradient(135deg, #E91E63 0%, #FF69B4 100%);">
+            <div class="container">
+                <%-- LOGO Y NOMBRE --%>
+                <%-- runat="server" permite usar ~ para rutas relativas a la raíz --%>
+                <a class="navbar-brand" href="#"> 
+                    <%-- Logo de la nevería (imagen de helado) --%>
+                    <img src="imagenes/helado.png" alt="logo nevería" style="width: 40px;" class="rounded-circle"/>
+                    <%-- Nombre del negocio con emoji --%>
+                    <span style="font-weight: bold; margin-left: 10px;">🍦 Nevería La Paleta</span>
+                </a>
+                
+                <%-- BOTÓN HAMBURGUESA (visible solo en móviles) --%>
+                <%--
+                    data-bs-toggle="collapse": activa/desactiva menú
+                    data-bs-target=".navbar-collapse": elemento a colapsar
+                    Se muestra automáticamente en pantallas < 576px
+                --%>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <%-- MENÚ DE NAVEGACIÓN --%>
+                <%-- 
+                    d-sm-inline-flex: display inline-flex en pantallas small+
+                    justify-content-between: espacia elementos
+                    collapse navbar-collapse: se colapsa en móviles
+                --%>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <%-- ELEMENTOS DEL MENÚ --%>
+                        <%-- Cada <li> es un elemento de navegación --%>
+                        
+                        <%-- Inicio: href="~/" apunta a Default.aspx --%>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">🏠 Inicio</a></li>
+                        
+                        <%-- Inventario: página principal CRUD --%>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Producto">🍨 Inventario</a></li>
+                        
+                        <%-- Consultas: página de reportes y búsquedas --%>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Consultas">📊 Consultas</a></li>
+                        
+                        <%-- Acerca de: información del sistema --%>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">ℹ️ Acerca de</a></li>
+                        
+                        <%-- Contacto: formulario de contacto --%>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">📞 Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <%-- ============================================
+             CONTENIDO PRINCIPAL
+             ============================================ --%>
+        <%-- 
+            ContentPlaceHolder: área donde cada página inserta su contenido
+            Cada página .aspx tiene un <asp:Content> que se inserta aquí
+        --%>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                <%-- El contenido de cada página aparece aquí --%>
+            </asp:ContentPlaceHolder>
+            
+            <%-- Línea horizontal separadora --%>
+            <hr />
+            
+            <%-- ============================================
+                 FOOTER (PIE DE PÁGINA)
+                 ============================================ --%>
+            <footer style="text-align: center; padding: 20px 0; color: #E91E63;">
+                <%-- 
+                    DateTime.Now.Year: obtiene el año actual dinámicamente
+                    <%: %> : sintaxis Razor que escapa HTML automáticamente
+                --%>
+                <p>&copy; <%: DateTime.Now.Year %> - Nevería La Paleta - Sistema de Inventario 🍦</p>
+            </footer>
+        </div>
+    </form>
+    
+    <%-- ============================================
+         SCRIPTS AL FINAL (mejora rendimiento)
+         ============================================ --%>
+    <%-- 
+        Scripts al final del body:
+        - Permiten que HTML se renderice primero
+        - Mejoran tiempo de carga percibido
+        - Bootstrap JavaScript para componentes interactivos
+    --%>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
+    </asp:PlaceHolder>
+</body>
+</html>
+
+<%-- 
+    ARQUITECTURA MASTER PAGE:
+    
+    Site.Master (esta plantilla)
+         ↓
+    Define estructura común:
+    - <head> con CSS y meta tags
+    - Navbar
+    - Footer
+    - ContentPlaceHolder (área variable)
+         ↓
+    Páginas individuales (.aspx):
+    - Default.aspx
+    - Producto.aspx
+    - Consultas.aspx
+    - About.aspx
+    - Contact.aspx
+         ↓
+    Cada página define:
+    - MasterPageFile="~/Site.Master"
+    - <asp:Content ID="..." ContentPlaceHolderID="MainContent">
+      ... contenido específico de la página ...
+      </asp:Content>
+    
+    VENTAJAS DEL PATRÓN MASTER PAGE:
+    
+    1. DRY (Don't Repeat Yourself):
+       - Navbar y footer en un solo lugar
+       - Cambios se reflejan en todas las páginas
+    
+    2. Consistencia:
+       - Diseño uniforme en todo el sitio
+       - Mismo estilo de navegación
+    
+    3. Mantenibilidad:
+       - Fácil actualizar menú (solo en Site.Master)
+       - Cambiar estilo global desde un archivo
+    
+    4. SEO y Accesibilidad:
+       - Meta tags consistentes
+       - Estructura HTML semántica
+    
+    RESPONSIVE DESIGN:
+    
+    ESCRITORIO (> 576px):
+    [Logo] [Nevería La Paleta]  [Inicio] [Inventario] [Consultas] [Acerca de] [Contacto]
+    
+    MÓVIL (< 576px):
+    [Logo] [Nevería La Paleta]  [☰]
+                                 ↓ (al hacer clic)
+                                [Inicio]
+                                [Inventario]
+                                [Consultas]
+                                [Acerca de]
+                                [Contacto]
+    
+    EMOJIS EN LA NAVEGACIÓN:
+    
+    - 🏠 Inicio: universal, todos entienden
+    - 🍨 Inventario: relacionado con nevería
+    - 📊 Consultas: representa datos/reportes
+    - ℹ️ Acerca de: símbolo de información
+    - 📞 Contacto: símbolo de comunicación
+    
+    Ventajas:
+    - Navegación visual más rápida
+    - Identificación inmediata de secciones
+    - Diseño más amigable y moderno
+    
+    PERSONALIZACIÓN DEL TEMA:
+    
+    Rosa Mexicano (#E91E63 y #FF69B4):
+    - Color principal del navbar
+    - Color de acentos en todo el sitio
+    - Representa marca de la nevería
+    - Gradientes para efecto moderno
+    
+    BUNDLES Y OPTIMIZACIÓN:
+    
+    Scripts.Render("~/bundles/modernizr"):
+    - Agrupa múltiples archivos JS en uno
+    - Reduce número de peticiones HTTP
+    - Mejora velocidad de carga
+    
+    Scripts.Render("~/Scripts/bootstrap.js"):
+    - Incluye Bootstrap JavaScript
+    - Necesario para navbar responsive
+    - Tooltips, modals, collapse, etc.
+--%>

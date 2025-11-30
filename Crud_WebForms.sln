@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36408.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crud_WebForms", "Crud_WebForms.csproj", "{DF8B7D46-9099-427A-BA5A-5DE42D7D23A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moedelo", "..\Moedelo\Moedelo.csproj", "{4581DB84-519B-4247-90F6-3F59A28A58D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF8B7D46-9099-427A-BA5A-5DE42D7D23A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF8B7D46-9099-427A-BA5A-5DE42D7D23A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF8B7D46-9099-427A-BA5A-5DE42D7D23A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF8B7D46-9099-427A-BA5A-5DE42D7D23A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4581DB84-519B-4247-90F6-3F59A28A58D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4581DB84-519B-4247-90F6-3F59A28A58D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4581DB84-519B-4247-90F6-3F59A28A58D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4581DB84-519B-4247-90F6-3F59A28A58D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7A13AF5F-B361-40CE-ACF0-CA0802F540E5}
+	EndGlobalSection
+EndGlobal
